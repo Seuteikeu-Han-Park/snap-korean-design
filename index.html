@@ -3,52 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snap Korean — Design Gallery</title>
-  <link rel="stylesheet" href="assets/gallery.css" />
+  <title>Snap Korean — Design</title>
+  <link rel="stylesheet" href="assets/shell.css" />
 </head>
 <body>
-  <main class="gallery">
-    <header class="gallery__head">
-      <h1 class="gallery__title">Snap Korean 📸🇰🇷</h1>
-      <p class="gallery__sub">사진을 찍으면 한국어 <b>활용형 표현</b>이 되는 학습 앱</p>
-      <div>
-        <span class="gallery__tag">CapWords는 명사 · 우리는 문장</span>
-      </div>
-    </header>
+  <div class="app">
+    <nav class="nav">
+      <div class="nav__brand">Snap Korean 📸</div>
+      <div class="nav__tagline">사진 → 활용형 표현 학습 앱<br />디자인 시스템 & 화면</div>
 
-    <section class="gallery__grid">
-      <div class="gallery__item">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <iframe class="phone__viewport" src="screens/capture.html" title="촬영"></iframe>
-        </div>
-        <p class="gallery__caption">1 · 촬영</p>
-        <p class="gallery__note">카메라는 코어가 아니라 입력 장치. 큰 버튼·1탭.</p>
-      </div>
+      <div class="nav__section">디자인 시스템</div>
+      <a class="nav__link" href="#/system" data-route="system">🎨 토큰 & 컴포넌트</a>
 
-      <div class="gallery__item">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <iframe class="phone__viewport" src="screens/expression.html" title="내 표현"></iframe>
-        </div>
-        <p class="gallery__caption">2 · 내 표현 ⭐</p>
-        <p class="gallery__note">명사 + 오늘의 활용형 = 내 문장. 제품 정체성이 사는 화면.</p>
-      </div>
+      <div class="nav__section">화면</div>
+      <a class="nav__link" href="#/capture" data-route="capture"><span class="num">1</span> 촬영</a>
+      <a class="nav__link" href="#/expression" data-route="expression"><span class="num">2</span> 내 표현</a>
+      <a class="nav__link" href="#/pronunciation" data-route="pronunciation"><span class="num">3</span> 발음 연습</a>
+    </nav>
 
-      <div class="gallery__item">
-        <div class="phone">
-          <div class="phone__notch"></div>
-          <iframe class="phone__viewport" src="screens/pronunciation.html" title="발음 연습"></iframe>
-        </div>
-        <p class="gallery__caption">3 · 발음 연습</p>
-        <p class="gallery__note">Success-First 피드백. 깎아내리지 않고 다음 시도를 권함.</p>
+    <main class="content is-page">
+      <!-- page mode: full iframe (design system) -->
+      <iframe id="pageFrame" class="content__frame" title="page"></iframe>
+      <!-- screen mode: phone frame -->
+      <div class="viewport-phone phone">
+        <div class="phone__notch"></div>
+        <iframe id="screenFrame" class="phone__viewport" title="screen"></iframe>
       </div>
-    </section>
+    </main>
+  </div>
 
-    <footer style="text-align:center;margin-top:48px;color:var(--color-on-surface-muted);font-size:15px">
-      디자인 토큰은 <code>assets/tokens.css</code> — Flutter <code>AppColors/AppSpacing/AppTypography</code>와 동일 값.<br />
-      화면 추가: <code>screens/&lt;name&gt;.html</code> 작성 → <code>index.html</code>에 카드 추가.
-    </footer>
-  </main>
+  <!-- phone frame styles needed inside the shell -->
+  <link rel="stylesheet" href="assets/components.css" />
+
+  <script>
+    const routes = {
+      system: { type: "page", src: "design-system.html" },
+      capture: { type: "screen", src: "screens/capture.html" },
+      expression: { type: "screen", src: "screens/expression.html" },
+      pronunciation: { type: "screen", src: "screens/pronunciation.html" },
+    };
+    function render() {
+      let key = location.hash.replace(/^#\/?/, "") || "system";
+      if (!routes[key]) key = "system";
+      const r = routes[key];
+      const content = document.querySelector(".content");
+      const isScreen = r.type === "screen";
+      content.classList.toggle("is-screen", isScreen);
+      content.classList.toggle("is-page", !isScreen);
+      const frame = document.getElementById(isScreen ? "screenFrame" : "pageFrame");
+      if (frame.getAttribute("src") !== r.src) frame.setAttribute("src", r.src);
+      document.querySelectorAll(".nav__link").forEach((a) =>
+        a.classList.toggle("is-active", a.dataset.route === key)
+      );
+    }
+    window.addEventListener("hashchange", render);
+    window.addEventListener("DOMContentLoaded", render);
+  </script>
 </body>
 </html>
