@@ -8,19 +8,50 @@
   <style> html,body{height:100%} body{display:flex} .screen{flex:1} </style>
 </head>
 <body>
-  <div class="screen">
-    <div class="screen__topbar"><span class="screen__step">1단계 · 오늘의 한 장</span></div>
+  <div class="screen" data-camera>
+    <div class="appbar">
+      <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
+      <span class="screen__step">1단계 · 오늘의 한 장</span>
+    </div>
     <div class="screen__body stack-lg">
       <div>
         <h1 class="headline">오늘 본 것을<br />찍어보세요</h1>
         <p class="muted" style="margin-top:var(--space-sm)">저녁상, 강아지, 산책길 — 무엇이든 좋아요.</p>
       </div>
-      <div class="photo photo--dashed" style="height:300px">📷</div>
+
+      <div class="viewfinder">
+        <div class="photo photo--dashed" style="height:180px;font-size:56px;color:var(--color-primary)">
+          <i data-lucide="camera"></i>
+        </div>
+        <div class="viewfinder__flash" data-flash></div>
+      </div>
+
+      <p class="caption" style="text-align:center">
+        촬영 모드 · <b data-mode-label style="color:var(--color-primary)">자동</b>
+      </p>
+
+      <div class="camera">
+        <div class="camera__pointer"></div>
+        <div class="dial" data-dial role="radiogroup" aria-label="촬영 모드">
+          <button class="dial__opt" role="radio" data-mode="자동">자동</button>
+          <button class="dial__opt" role="radio" data-mode="사물">사물</button>
+          <button class="dial__opt" role="radio" data-mode="인물">인물</button>
+          <button class="dial__opt" role="radio" data-mode="음식">음식</button>
+          <button class="dial__opt" role="radio" data-mode="풍경">풍경</button>
+          <button class="dial__opt" role="radio" data-mode="글자">글자</button>
+        </div>
+        <button class="shutter" data-shutter aria-label="사진 찍기">
+          <span class="shutter__core"><i data-lucide="camera"></i></span>
+        </button>
+      </div>
     </div>
+
     <div class="screen__bottom">
-      <button class="btn">📸 &nbsp;사진 찍기</button>
-      <button class="btn btn--ghost">갤러리에서 고르기</button>
+      <button class="btn btn--ghost"><i data-lucide="images"></i> 갤러리에서 고르기</button>
     </div>
   </div>
+
+  <script src="../assets/dial.js" defer></script>
+  <script src="../assets/glyphs.js" defer></script>
 </body>
 </html>
