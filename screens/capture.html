@@ -9,30 +9,46 @@
 </head>
 <body>
   <div class="screen" data-camera>
+    <div class="statusbar">
+      <span>9:41</span>
+      <span class="statusbar__icons">
+        <i data-lucide="signal-high"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+      </span>
+    </div>
+
     <div class="appbar">
       <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
-      <span class="screen__step">1단계 · 오늘의 한 장</span>
+      <span class="appbar__step">1단계 · 오늘의 한 장</span>
     </div>
-    <div class="screen__body stack-lg">
-      <div>
+    <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
+      <span class="steps__dot is-active"></span>
+      <span class="steps__dot"></span>
+      <span class="steps__dot"></span>
+      <span class="steps__dot"></span>
+    </div>
+
+    <div class="screen__body">
+      <div class="stack-sm">
         <h1 class="headline">오늘 본 것을<br />찍어보세요</h1>
-        <p class="muted" style="margin-top:var(--space-sm)">저녁상, 강아지, 산책길 — 무엇이든 좋아요.</p>
+        <p class="muted">저녁상, 강아지, 산책길 — 무엇이든 좋아요.</p>
       </div>
 
-      <div class="viewfinder">
-        <div class="photo photo--dashed" style="height:180px;font-size:56px;color:var(--color-primary)">
+      <div class="viewfinder" style="margin-top:var(--space-md)">
+        <div class="photo photo--dashed" style="height:148px;font-size:48px;color:var(--color-primary)">
           <i data-lucide="camera"></i>
         </div>
         <div class="viewfinder__flash" data-flash></div>
       </div>
 
-      <p class="caption" style="text-align:center">
+      <div class="spacer"></div>
+
+      <p class="caption" style="text-align:center;margin-bottom:var(--space-sm)">
         촬영 모드 · <b data-mode-label style="color:var(--color-primary)">자동</b>
       </p>
-
       <div class="camera">
         <div class="camera__pointer"></div>
         <div class="dial" data-dial role="radiogroup" aria-label="촬영 모드">
+          <span class="dial__slot"></span>
           <button class="dial__opt" role="radio" data-mode="자동">자동</button>
           <button class="dial__opt" role="radio" data-mode="사물">사물</button>
           <button class="dial__opt" role="radio" data-mode="인물">인물</button>
@@ -44,6 +60,8 @@
           <span class="shutter__core"><i data-lucide="camera"></i></span>
         </button>
       </div>
+
+      <div class="spacer"></div>
     </div>
 
     <div class="screen__bottom">
