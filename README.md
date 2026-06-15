@@ -32,21 +32,23 @@ screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만
 | Color · 표면/텍스트 | `--color-bg`, `--color-surface` / `-alt`, `--color-on-surface` / `-muted`, `--color-on-primary`, `--color-border` |
 | Color · 상태 | `--color-success/warning/danger/info` (+ 각 `-soft`) |
 | Color · 상호작용 | `--color-focus`, `--color-disabled`, `--color-on-disabled`, `--color-scrim` |
+| Gradient | `--gradient-primary` (CTA), `--gradient-accent`, `--gradient-photo`, `--gradient-bg` |
 | Spacing | `--space-2xs … --space-3xl` (4px 배수) |
 | Radius | `--radius-sm/md/lg/pill/circle` |
 | Border | `--border-width`, `--border-width-strong` |
 | Sizing | `--tap-target` (44px, 접근성), `--nav-width` |
 | Typography | `--text-display/h1/h2/body/label/caption`, `--weight-*`, `--leading-tight/snug/normal`, `--tracking-wide`, `--font` / `--font-mono` |
-| Elevation | `--shadow-soft/card/overlay` |
+| Elevation | `--shadow-soft/card/overlay` (레이어드), `--shadow-press` |
 | Motion | `--duration-fast/base/slow`, `--ease-standard/out`, `--transition-base` |
 | Z-index | `--z-base/nav/scrim/modal/toast` |
 
 ### 컴포넌트 인벤토리
 
-`.btn` (`--ghost/accent/danger/sm`, `.is-loading`, `:disabled`) · `.icon-btn` · `.appbar` ·
-`.camera` / `.dial` / `.shutter` (회전식 촬영 모드 다이얼) ·
+`.statusbar` (폰 시계·배터리) · `.appbar` / `.appbar__step` · `.steps` (단계 인디케이터) ·
+`.btn` (`--ghost/accent/danger/sm`, `.is-loading`, `:disabled`, 그라데이션+lift/press) · `.icon-btn` ·
+`.camera` / `.dial` / `.dial__slot` / `.shutter` (회전식 촬영 모드 다이얼) · `.viewfinder` ·
 `.steps` · `.progress` · `.chip` (`--noun/conj/selectable`) · `.badge` (`--success/warning/danger/info`) ·
-`.card` (`--hint/accent/danger`) · `.expression` · `.photo` / `.viewfinder` · `.field` (`--error`) · `.switch` ·
+`.card` (`--hint/accent/danger`) · `.expression` · `.photo` (`.photo__tag` 비네팅 사진 카드) · `.field` (`--error`) · `.switch` ·
 `.list` / `.list-item` · `.empty` · `.skeleton` · `.mic` (`.is-recording`) · `.spinner` · `.divider` ·
 `.scrim` / `.sheet` / `.dialog` / `.toast` · 텍스트/간격 헬퍼(`.display/.headline/.subhead/.body/.muted/.caption/.link`, `.stack-*`, `.row`).
 

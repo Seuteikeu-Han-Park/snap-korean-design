@@ -9,23 +9,44 @@
 </head>
 <body>
   <div class="screen">
+    <div class="statusbar">
+      <span>9:41</span>
+      <span class="statusbar__icons">
+        <i data-lucide="signal-high"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+      </span>
+    </div>
+
     <div class="appbar">
       <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
-      <span class="screen__step">4단계 · 소리내어</span>
+      <span class="appbar__step">4단계 · 소리내어</span>
     </div>
-    <div class="screen__body stack-lg" style="text-align:center">
-      <div>
+    <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-active"></span>
+    </div>
+
+    <div class="screen__body" style="text-align:center">
+      <div class="stack-sm">
         <p class="expression">강아지가<br />귀여워 보여요</p>
-        <p class="muted" style="margin-top:var(--space-sm)">버튼을 누르고 따라 말해보세요</p>
+        <p class="muted">버튼을 누르고 따라 말해보세요</p>
       </div>
+
+      <div class="spacer"></div>
       <button class="mic is-recording" aria-label="녹음 시작"><i data-lucide="mic"></i></button>
+      <div class="spacer"></div>
+
       <div class="card card--accent" style="text-align:left">
-        <p style="font-size:var(--text-h2);font-weight:var(--weight-bold);color:var(--color-success)">좋아요! 👏</p>
+        <p class="row" style="gap:var(--space-xs);font-size:var(--text-h2);font-weight:var(--weight-bold);color:var(--color-success)">
+          <i data-lucide="check-circle-2"></i> 좋아요! 👏
+        </p>
         <p class="muted" style="font-size:var(--text-label);margin-top:var(--space-xs)">
           또박또박 잘 말했어요. ‘귀여워’ 발음이 자연스러워요.
         </p>
       </div>
     </div>
+
     <div class="screen__bottom">
       <button class="btn">다음 표현 <i data-lucide="arrow-right"></i></button>
       <button class="btn btn--ghost"><i data-lucide="rotate-ccw"></i> 다시 듣기</button>

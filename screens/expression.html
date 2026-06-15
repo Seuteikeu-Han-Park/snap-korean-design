@@ -9,24 +9,47 @@
 </head>
 <body>
   <div class="screen">
+    <div class="statusbar">
+      <span>9:41</span>
+      <span class="statusbar__icons">
+        <i data-lucide="signal-high"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+      </span>
+    </div>
+
     <div class="appbar">
       <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
-      <span class="screen__step">3단계 · 내 표현</span>
+      <span class="appbar__step">3단계 · 내 표현</span>
     </div>
+    <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-active"></span>
+      <span class="steps__dot"></span>
+    </div>
+
     <div class="screen__body stack-md">
-      <div class="photo" style="height:160px;font-size:52px">🐶</div>
+      <div class="photo" style="height:172px;font-size:80px">
+        🐶
+        <span class="photo__tag"><i data-lucide="check"></i> 방금 찍은 사진</span>
+      </div>
+
       <div class="row">
         <span class="chip chip--noun">강아지</span>
         <span class="chip chip--conj">~어 보여요</span>
       </div>
+
       <p class="expression">강아지가<br />귀여워 보여요</p>
+
       <div class="card card--hint">
-        <p class="muted" style="font-size:var(--text-label);color:var(--color-primary-dark)">
-          <i data-lucide="lightbulb"></i> 오늘 배운 활용형 <b>‘~어 보여요’</b> 로 만든 <b>내 문장</b>이에요.
+        <p class="body" style="font-size:var(--text-label);color:var(--color-primary-dark)">
+          <i data-lucide="lightbulb"></i> 오늘 배운 활용형 <b>‘~어 보여요’</b>로 만든 <b>내 문장</b>이에요.
           명사만 외우는 게 아니라, 바로 말이 됩니다.
         </p>
       </div>
+
+      <div class="spacer"></div>
     </div>
+
     <div class="screen__bottom">
       <button class="btn"><i data-lucide="volume-2"></i> 발음 연습하기</button>
       <button class="btn btn--ghost"><i data-lucide="bookmark"></i> 이 표현 저장</button>
