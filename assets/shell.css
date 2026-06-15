@@ -22,7 +22,8 @@ body {
   padding: var(--space-lg) var(--space-md);
   overflow-y: auto;
 }
-.nav__brand { font-size: var(--text-h2); font-weight: var(--weight-bold); }
+.nav__brand { font-size: var(--text-h2); font-weight: var(--weight-bold);
+  display: flex; align-items: center; gap: var(--space-xs); color: var(--color-primary); }
 .nav__tagline {
   font-size: var(--text-label); color: var(--color-on-surface-muted);
   margin-top: var(--space-xs); line-height: 1.4;

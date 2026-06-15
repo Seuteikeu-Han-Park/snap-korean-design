@@ -44,12 +44,21 @@ screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만
 ### 컴포넌트 인벤토리
 
 `.btn` (`--ghost/accent/danger/sm`, `.is-loading`, `:disabled`) · `.icon-btn` · `.appbar` ·
+`.camera` / `.dial` / `.shutter` (회전식 촬영 모드 다이얼) ·
 `.steps` · `.progress` · `.chip` (`--noun/conj/selectable`) · `.badge` (`--success/warning/danger/info`) ·
-`.card` (`--hint/accent/danger`) · `.expression` · `.photo` · `.field` (`--error`) · `.switch` ·
+`.card` (`--hint/accent/danger`) · `.expression` · `.photo` / `.viewfinder` · `.field` (`--error`) · `.switch` ·
 `.list` / `.list-item` · `.empty` · `.skeleton` · `.mic` (`.is-recording`) · `.spinner` · `.divider` ·
 `.scrim` / `.sheet` / `.dialog` / `.toast` · 텍스트/간격 헬퍼(`.display/.headline/.subhead/.body/.muted/.caption/.link`, `.stack-*`, `.row`).
 
-**접근성**: 키보드 `:focus-visible` 링, 최소 터치 영역 44px, `prefers-reduced-motion` 자동 대응, `.sr-only` 헬퍼.
+**접근성**: 키보드 `:focus-visible` 링, 최소 터치 영역 44px, `prefers-reduced-motion` 자동 대응, `.sr-only` 헬퍼,
+다이얼은 `role="radiogroup"` + 화살표 키 지원.
+
+### 아이콘 & 이모지
+
+- **UI 아이콘 = [Lucide](https://lucide.dev)** — `<i data-lucide="camera"></i>` 형태로 작성, `currentColor`/`1em`로 토큰 색·크기를 따른다.
+- **표현용 이모지 = [Twemoji](https://github.com/jdecked/twemoji)(트위터 이모지)** — 본문에 이모지 문자(🐶 👏)를 그대로 쓰면 자동으로 트위터 SVG로 치환.
+- 두 가지 모두 `assets/glyphs.js`가 CDN에서 로드·렌더한다. 동적으로 DOM을 추가했다면 `window.renderGlyphs()` 호출.
+- 회전 다이얼 동작은 `assets/dial.js`(촬영 화면 전용).
 
 ## 파일
 
@@ -60,6 +69,8 @@ assets/
   tokens.css            ← ★ 디자인 토큰 (단일 소스)
   components.css         ← 컴포넌트 (토큰만 사용)
   shell.css             ← 사이트 레이아웃
+  glyphs.js             ← Lucide 아이콘 + Twemoji 이모지 로더
+  dial.js               ← 회전식 촬영 모드 다이얼 동작
 screens/
   capture.html · expression.html · pronunciation.html
 .github/workflows/pages.yml   ← main push 시 자동 배포

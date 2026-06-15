@@ -9,13 +9,16 @@
 </head>
 <body>
   <div class="screen">
-    <div class="screen__topbar"><span class="screen__step">4단계 · 소리내어</span></div>
+    <div class="appbar">
+      <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
+      <span class="screen__step">4단계 · 소리내어</span>
+    </div>
     <div class="screen__body stack-lg" style="text-align:center">
       <div>
         <p class="expression">강아지가<br />귀여워 보여요</p>
         <p class="muted" style="margin-top:var(--space-sm)">버튼을 누르고 따라 말해보세요</p>
       </div>
-      <div class="mic">🎙️</div>
+      <button class="mic is-recording" aria-label="녹음 시작"><i data-lucide="mic"></i></button>
       <div class="card card--accent" style="text-align:left">
         <p style="font-size:var(--text-h2);font-weight:var(--weight-bold);color:var(--color-success)">좋아요! 👏</p>
         <p class="muted" style="font-size:var(--text-label);margin-top:var(--space-xs)">
@@ -24,9 +27,11 @@
       </div>
     </div>
     <div class="screen__bottom">
-      <button class="btn">다음 표현 →</button>
-      <button class="btn btn--ghost">🔁 다시 듣기</button>
+      <button class="btn">다음 표현 <i data-lucide="arrow-right"></i></button>
+      <button class="btn btn--ghost"><i data-lucide="rotate-ccw"></i> 다시 듣기</button>
     </div>
   </div>
+
+  <script src="../assets/glyphs.js" defer></script>
 </body>
 </html>

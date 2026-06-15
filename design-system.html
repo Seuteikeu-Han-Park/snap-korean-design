@@ -99,24 +99,47 @@
     <h3>버튼</h3>
     <div class="demo">
       <div class="panel" style="min-width:260px">
-        <button class="btn">📸 &nbsp;사진 찍기</button>
-        <button class="btn btn--ghost">갤러리에서 고르기</button>
-        <button class="btn btn--accent">저장하기</button>
+        <button class="btn"><i data-lucide="camera"></i> 사진 찍기</button>
+        <button class="btn btn--ghost"><i data-lucide="images"></i> 갤러리에서 고르기</button>
+        <button class="btn btn--accent"><i data-lucide="bookmark"></i> 저장하기</button>
         <button class="btn is-loading">로딩</button>
         <button class="btn" disabled>비활성</button>
         <div class="row" style="margin-top:var(--space-md)">
           <button class="btn btn--sm">작은 버튼</button>
-          <button class="btn btn--sm btn--danger">삭제</button>
+          <button class="btn btn--sm btn--danger"><i data-lucide="trash-2"></i> 삭제</button>
         </div>
         <p class="panel__label">.btn · --ghost · --accent · --danger · --sm · .is-loading · :disabled</p>
       </div>
       <div class="panel">
         <div class="appbar" style="padding-left:0;padding-right:0">
-          <button class="icon-btn" aria-label="뒤로">←</button>
+          <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
           <span class="appbar__title">내 표현</span>
-          <button class="icon-btn" aria-label="닫기">✕</button>
+          <button class="icon-btn" aria-label="닫기"><i data-lucide="x"></i></button>
         </div>
         <p class="panel__label">.appbar · .icon-btn (터치 44px)</p>
+      </div>
+    </div>
+
+    <h3>촬영 다이얼 (회전식 모드 선택 + 셔터)</h3>
+    <p class="ds__sub">림(rim)을 드래그하거나 모드를 탭하면 상단 포인터로 스냅됩니다. 가운데 원이 셔터.</p>
+    <div class="demo">
+      <div class="panel" data-camera style="text-align:center">
+        <p class="caption">촬영 모드 · <b data-mode-label style="color:var(--color-primary)">자동</b></p>
+        <div class="camera" style="margin-top:var(--space-md)">
+          <div class="camera__pointer"></div>
+          <div class="dial" data-dial role="radiogroup" aria-label="촬영 모드">
+            <button class="dial__opt" role="radio" data-mode="자동">자동</button>
+            <button class="dial__opt" role="radio" data-mode="사물">사물</button>
+            <button class="dial__opt" role="radio" data-mode="인물">인물</button>
+            <button class="dial__opt" role="radio" data-mode="음식">음식</button>
+            <button class="dial__opt" role="radio" data-mode="풍경">풍경</button>
+            <button class="dial__opt" role="radio" data-mode="글자">글자</button>
+          </div>
+          <button class="shutter" data-shutter aria-label="사진 찍기">
+            <span class="shutter__core"><i data-lucide="camera"></i></span>
+          </button>
+        </div>
+        <p class="panel__label">.camera · .dial · .shutter</p>
       </div>
     </div>
 
@@ -160,7 +183,7 @@
     <h3>카드 · 표현 · 사진</h3>
     <div class="demo">
       <div class="panel">
-        <div class="card card--hint"><p class="caption" style="color:var(--color-primary-dark)">💡 힌트 카드</p></div>
+        <div class="card card--hint"><p class="caption" style="color:var(--color-primary-dark)"><i data-lucide="lightbulb"></i> 힌트 카드</p></div>
         <div class="card card--accent" style="margin-top:var(--space-sm)"><b style="color:var(--color-success)">좋아요! 👏</b></div>
         <div class="card card--danger" style="margin-top:var(--space-sm)"><span style="color:var(--color-danger)">⚠ 다시 시도해 주세요</span></div>
         <p class="panel__label">.card--hint / --accent / --danger</p>
@@ -206,12 +229,12 @@
           <a class="list-item">
             <span class="list-item__icon">🐶</span>
             <span class="list-item__text"><span class="list-item__title">강아지가 귀여워 보여요</span><span class="list-item__sub">~어 보여요 · 어제</span></span>
-            <span class="list-item__action">›</span>
+            <span class="list-item__action"><i data-lucide="chevron-right"></i></span>
           </a>
           <a class="list-item">
             <span class="list-item__icon">🍚</span>
             <span class="list-item__text"><span class="list-item__title">밥이 맛있어 보여요</span><span class="list-item__sub">~어 보여요 · 3일 전</span></span>
-            <span class="list-item__action">›</span>
+            <span class="list-item__action"><i data-lucide="chevron-right"></i></span>
           </a>
         </div>
         <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.list · .list-item</p>
@@ -237,7 +260,7 @@
     <h3>마이크 · 스피너 · 디바이더</h3>
     <div class="demo">
       <div class="panel" style="text-align:center">
-        <button class="mic is-recording" aria-label="녹음">🎙️</button>
+        <button class="mic is-recording" aria-label="녹음"><i data-lucide="mic"></i></button>
         <p class="panel__label">.mic.is-recording</p>
       </div>
       <div class="panel" style="text-align:center">
@@ -284,7 +307,7 @@
       </div>
       <div class="panel" style="padding:0;min-width:300px">
         <div class="overlay-demo" style="background:var(--color-surface-alt)">
-          <div class="toast toast--success">✓ 표현을 저장했어요</div>
+          <div class="toast toast--success"><i data-lucide="check"></i> 표현을 저장했어요</div>
         </div>
         <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.toast--success</p>
       </div>
@@ -343,5 +366,7 @@
       durations.map((t) => `<div class="type-row"><code>${t}</code> · <span class="caption">${root.getPropertyValue(t).trim()}</span></div>`).join("") +
       eases.map((t) => `<div class="type-row"><code>${t}</code> · <span class="caption">${root.getPropertyValue(t).trim()}</span></div>`).join("");
   </script>
+  <script src="assets/dial.js" defer></script>
+  <script src="assets/glyphs.js" defer></script>
 </body>
 </html>
