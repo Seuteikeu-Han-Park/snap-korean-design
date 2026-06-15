@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snap Korean · 발음 연습</title>
+  <link rel="stylesheet" href="../assets/gallery.css" />
+  <style>
+    html,body{height:100%} body{display:flex} .screen{flex:1}
+    .mic{
+      width:120px;height:120px;border-radius:var(--radius-pill);
+      background:var(--color-primary);color:#fff;font-size:52px;
+      display:flex;align-items:center;justify-content:center;margin:0 auto;
+      box-shadow:var(--shadow-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="screen__topbar">
+      <span class="screen__step">4단계 · 소리내어</span>
+    </div>
+    <div class="screen__body" style="text-align:center">
+      <p class="expression" style="margin-top:8px">강아지가<br />귀여워 보여요</p>
+      <p class="muted" style="margin-top:8px">버튼을 누르고 따라 말해보세요</p>
+
+      <div class="mic" style="margin-top:32px">🎙️</div>
+
+      <div class="card" style="margin-top:32px;border:2px solid var(--color-success);text-align:left">
+        <p style="font-size:20px;font-weight:700;color:var(--color-success)">좋아요! 👏</p>
+        <p class="muted" style="font-size:15px;margin-top:6px">
+          또박또박 잘 말했어요. ‘귀여워’ 발음이 자연스러워요.
+        </p>
+      </div>
+    </div>
+    <div class="screen__bottom">
+      <button class="btn">다음 표현 →</button>
+      <button class="btn btn--ghost" style="margin-top:12px">🔁 다시 듣기</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snap Korean — Design Gallery</title>
+  <link rel="stylesheet" href="assets/gallery.css" />
+</head>
+<body>
+  <main class="gallery">
+    <header class="gallery__head">
+      <h1 class="gallery__title">Snap Korean 📸🇰🇷</h1>
+      <p class="gallery__sub">사진을 찍으면 한국어 <b>활용형 표현</b>이 되는 학습 앱</p>
+      <div>
+        <span class="gallery__tag">CapWords는 명사 · 우리는 문장</span>
+      </div>
+    </header>
+
+    <section class="gallery__grid">
+      <div class="gallery__item">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <iframe class="phone__viewport" src="screens/capture.html" title="촬영"></iframe>
+        </div>
+        <p class="gallery__caption">1 · 촬영</p>
+        <p class="gallery__note">카메라는 코어가 아니라 입력 장치. 큰 버튼·1탭.</p>
+      </div>
+
+      <div class="gallery__item">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <iframe class="phone__viewport" src="screens/expression.html" title="내 표현"></iframe>
+        </div>
+        <p class="gallery__caption">2 · 내 표현 ⭐</p>
+        <p class="gallery__note">명사 + 오늘의 활용형 = 내 문장. 제품 정체성이 사는 화면.</p>
+      </div>
+
+      <div class="gallery__item">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <iframe class="phone__viewport" src="screens/pronunciation.html" title="발음 연습"></iframe>
+        </div>
+        <p class="gallery__caption">3 · 발음 연습</p>
+        <p class="gallery__note">Success-First 피드백. 깎아내리지 않고 다음 시도를 권함.</p>
+      </div>
+    </section>
+
+    <footer style="text-align:center;margin-top:48px;color:var(--color-on-surface-muted);font-size:15px">
+      디자인 토큰은 <code>assets/tokens.css</code> — Flutter <code>AppColors/AppSpacing/AppTypography</code>와 동일 값.<br />
+      화면 추가: <code>screens/&lt;name&gt;.html</code> 작성 → <code>index.html</code>에 카드 추가.
+    </footer>
+  </main>
+</body>
+</html>
