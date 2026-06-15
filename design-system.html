@@ -8,94 +8,340 @@
   <style>
     .ds { max-width: 920px; margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
     .ds__title { font-size: 34px; font-weight: var(--weight-bold); }
-    .ds__lead { color: var(--color-on-surface-muted); font-size: var(--text-body); margin-top: var(--space-sm); line-height: 1.5; }
+    .ds__lead { color: var(--color-on-surface-muted); font-size: var(--text-body); margin-top: var(--space-sm); line-height: var(--leading-normal); }
     .ds__note { background: var(--color-surface-alt); color: var(--color-primary-dark);
       border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg);
       font-size: var(--text-label); margin-top: var(--space-lg); font-weight: var(--weight-medium); }
-    .ds h2 { font-size: var(--text-h1); margin: var(--space-2xl) 0 var(--space-md); }
+    .ds h2 { font-size: var(--text-h1); margin: var(--space-2xl) 0 var(--space-xs); }
+    .ds h3 { font-size: var(--text-label); text-transform: uppercase; letter-spacing: var(--tracking-wide);
+      color: var(--color-on-surface-muted); margin: var(--space-lg) 0 var(--space-sm); }
+    .ds__sub { color: var(--color-on-surface-muted); font-size: var(--text-label); margin-bottom: var(--space-md); }
     .grid { display: grid; gap: var(--space-md); }
-    .grid--sw { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .grid--sw { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
     .sw { background: var(--color-surface); border: 1px solid var(--color-border);
       border-radius: var(--radius-md); overflow: hidden; }
-    .sw__chip { height: 64px; }
+    .sw__chip { height: 60px; }
     .sw__meta { padding: var(--space-sm) var(--space-md); }
     .sw__name { font-size: var(--text-label); font-weight: var(--weight-bold); }
-    .sw__val { font-size: 13px; color: var(--color-on-surface-muted); font-family: ui-monospace, monospace; }
+    .sw__val { font-size: var(--text-caption); color: var(--color-on-surface-muted); font-family: var(--font-mono); }
     .type-row { padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
-    .type-row code { font-size: 13px; color: var(--color-on-surface-muted); }
+    .type-row code { font-size: var(--text-caption); color: var(--color-on-surface-muted); }
     .space-row { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm); }
     .space-bar { height: 16px; background: var(--color-primary); border-radius: var(--radius-sm); }
-    .space-row code { width: 130px; font-size: 13px; color: var(--color-on-surface-muted); }
+    .space-row code { width: 150px; font-size: var(--text-caption); color: var(--color-on-surface-muted); font-family: var(--font-mono); }
+    .specimen { display: flex; flex-wrap: wrap; gap: var(--space-lg); align-items: flex-start; }
+    .specimen__box { text-align: center; }
+    .radius-box { width: 96px; height: 72px; background: var(--color-primary-soft); border: var(--border-width-strong) solid var(--color-primary); }
+    .elev-box { width: 140px; height: 72px; background: var(--color-surface); border-radius: var(--radius-md); }
     .demo { display: flex; gap: var(--space-lg); flex-wrap: wrap; align-items: flex-start; }
-    .demo > div { background: var(--color-surface); border: 1px solid var(--color-border);
-      border-radius: var(--radius-md); padding: var(--space-lg); min-width: 220px; }
+    .demo > .panel { background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--space-lg); min-width: 240px; }
+    .panel__label { font-size: var(--text-caption); color: var(--color-on-surface-muted); font-family: var(--font-mono); margin-top: var(--space-sm); }
+    /* inline static overlays so they render in the guide without JS */
+    .overlay-demo { position: relative; height: 260px; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+    .overlay-demo .scrim, .overlay-demo .toast { position: absolute; }
+    .overlay-demo .toast { left: 50%; bottom: var(--space-md); transform: translateX(-50%); }
   </style>
 </head>
 <body>
   <div class="ds">
     <h1 class="ds__title">디자인 시스템</h1>
     <p class="ds__lead">
-      이 페이지의 모든 색·글자·간격·컴포넌트는 <code>assets/tokens.css</code>의 변수에서 옵니다.
+      이 페이지의 모든 색·글자·간격·모션·컴포넌트는 <code>assets/tokens.css</code>의 변수에서 옵니다.
       <b>토큰 한 값만 바꾸면 이 페이지와 모든 화면(촬영·내 표현·발음)에 동시에 반영됩니다.</b>
     </p>
-    <p class="ds__note">🎨 단일 소스: tokens.css(값) → components.css(토큰만 사용) → screens/*.html · Flutter AppColors/AppSpacing/AppTypography</p>
+    <p class="ds__note">🎨 단일 소스: tokens.css(값) → components.css(토큰만 사용) → screens/*.html · Flutter AppColors/AppSpacing/AppTypography/AppMotion</p>
 
+    <!-- ============ COLOR ============ -->
     <h2>색 (Color)</h2>
-    <div class="grid grid--sw" id="swatches"></div>
+    <h3>브랜드 · 표면 · 텍스트</h3>
+    <div class="grid grid--sw" id="sw-base"></div>
+    <h3>상태 (Semantic state)</h3>
+    <div class="grid grid--sw" id="sw-state"></div>
+    <h3>상호작용 (Interaction)</h3>
+    <div class="grid grid--sw" id="sw-interaction"></div>
 
+    <!-- ============ TYPOGRAPHY ============ -->
     <h2>타이포 (Typography)</h2>
+    <p class="ds__sub">본문 최소 17px — 테크 비친화 학습자(Lisa)를 위한 큰 글씨 원칙.</p>
     <div>
-      <div class="type-row"><span style="font-size:var(--text-display);font-weight:700">강아지가 귀여워 보여요</span> <code>--text-display 32 / 표현 문장</code></div>
+      <div class="type-row"><span style="font-size:var(--text-display);font-weight:700;line-height:var(--leading-tight)">강아지가 귀여워 보여요</span> <code>--text-display 32 · leading-tight</code></div>
       <div class="type-row"><span style="font-size:var(--text-h1);font-weight:700">오늘 본 것을 찍어보세요</span> <code>--text-h1 24</code></div>
       <div class="type-row"><span style="font-size:var(--text-h2);font-weight:600">발음 연습하기</span> <code>--text-h2 20</code></div>
-      <div class="type-row"><span style="font-size:var(--text-body)">명사만 외우는 게 아니라 바로 말이 됩니다.</span> <code>--text-body 17 / 본문</code></div>
+      <div class="type-row"><span style="font-size:var(--text-body)">명사만 외우는 게 아니라 바로 말이 됩니다.</span> <code>--text-body 17 · 본문</code></div>
       <div class="type-row"><span style="font-size:var(--text-label);color:var(--color-on-surface-muted)">3단계 · 내 표현</span> <code>--text-label 15</code></div>
+      <div class="type-row"><span style="font-size:var(--text-caption);color:var(--color-on-surface-muted);font-family:var(--font-mono)">--color-primary · #ff6b54</span> <code>--text-caption 13 · mono</code></div>
     </div>
+    <h3>줄 높이 (Line-height)</h3>
+    <div class="demo" id="leading"></div>
 
+    <!-- ============ SPACING ============ -->
     <h2>간격 (Spacing)</h2>
+    <p class="ds__sub">4px 배수 스케일.</p>
     <div id="spacing"></div>
 
+    <!-- ============ RADIUS ============ -->
+    <h2>모서리 (Radius)</h2>
+    <div class="specimen" id="radius"></div>
+
+    <!-- ============ ELEVATION ============ -->
+    <h2>그림자 (Elevation)</h2>
+    <div class="specimen" id="elevation"></div>
+
+    <!-- ============ MOTION ============ -->
+    <h2>모션 (Motion)</h2>
+    <p class="ds__sub">지속시간·이징 토큰. <code>prefers-reduced-motion</code> 사용자는 자동으로 모션이 제거됩니다.</p>
+    <div id="motion"></div>
+
+    <!-- ============ COMPONENTS ============ -->
     <h2>컴포넌트 (Components)</h2>
+
+    <h3>버튼</h3>
     <div class="demo">
-      <div style="min-width:240px">
+      <div class="panel" style="min-width:260px">
         <button class="btn">📸 &nbsp;사진 찍기</button>
         <button class="btn btn--ghost">갤러리에서 고르기</button>
-        <p class="sw__val" style="margin-top:8px">.btn / .btn--ghost</p>
+        <button class="btn btn--accent">저장하기</button>
+        <button class="btn is-loading">로딩</button>
+        <button class="btn" disabled>비활성</button>
+        <div class="row" style="margin-top:var(--space-md)">
+          <button class="btn btn--sm">작은 버튼</button>
+          <button class="btn btn--sm btn--danger">삭제</button>
+        </div>
+        <p class="panel__label">.btn · --ghost · --accent · --danger · --sm · .is-loading · :disabled</p>
       </div>
-      <div>
+      <div class="panel">
+        <div class="appbar" style="padding-left:0;padding-right:0">
+          <button class="icon-btn" aria-label="뒤로">←</button>
+          <span class="appbar__title">내 표현</span>
+          <button class="icon-btn" aria-label="닫기">✕</button>
+        </div>
+        <p class="panel__label">.appbar · .icon-btn (터치 44px)</p>
+      </div>
+    </div>
+
+    <h3>진행 · 단계</h3>
+    <div class="demo">
+      <div class="panel">
+        <div class="steps">
+          <span class="steps__dot is-done"></span>
+          <span class="steps__dot is-active"></span>
+          <span class="steps__dot"></span>
+        </div>
+        <p class="panel__label">.steps (촬영→표현→발음)</p>
+      </div>
+      <div class="panel" style="min-width:280px">
+        <div class="progress"><div class="progress__bar" style="width:66%"></div></div>
+        <p class="panel__label">.progress (66%)</p>
+      </div>
+    </div>
+
+    <h3>칩 · 뱃지</h3>
+    <div class="demo">
+      <div class="panel">
         <div class="row"><span class="chip chip--noun">강아지</span><span class="chip chip--conj">~어 보여요</span></div>
-        <p class="sw__val" style="margin-top:8px">.chip--noun / .chip--conj</p>
+        <div class="row" style="margin-top:var(--space-sm)">
+          <button class="chip chip--selectable is-selected" aria-pressed="true">선택됨</button>
+          <button class="chip chip--selectable" aria-pressed="false">선택 안 됨</button>
+        </div>
+        <p class="panel__label">.chip--noun · --conj · --selectable</p>
       </div>
-      <div>
-        <div class="card card--hint"><p class="muted" style="font-size:15px;color:var(--color-primary-dark)">💡 힌트 카드</p></div>
-        <div class="card card--accent" style="margin-top:12px"><b style="color:var(--color-success)">좋아요! 👏</b></div>
-        <p class="sw__val" style="margin-top:8px">.card--hint / .card--accent</p>
+      <div class="panel">
+        <div class="row">
+          <span class="badge badge--success">완료</span>
+          <span class="badge badge--warning">검토</span>
+          <span class="badge badge--danger">오류</span>
+          <span class="badge badge--info">새 표현</span>
+        </div>
+        <p class="panel__label">.badge--success/warning/danger/info</p>
       </div>
-      <div>
+    </div>
+
+    <h3>카드 · 표현 · 사진</h3>
+    <div class="demo">
+      <div class="panel">
+        <div class="card card--hint"><p class="caption" style="color:var(--color-primary-dark)">💡 힌트 카드</p></div>
+        <div class="card card--accent" style="margin-top:var(--space-sm)"><b style="color:var(--color-success)">좋아요! 👏</b></div>
+        <div class="card card--danger" style="margin-top:var(--space-sm)"><span style="color:var(--color-danger)">⚠ 다시 시도해 주세요</span></div>
+        <p class="panel__label">.card--hint / --accent / --danger</p>
+      </div>
+      <div class="panel">
         <p class="expression">강아지가<br />귀여워 보여요</p>
-        <p class="sw__val" style="margin-top:8px">.expression</p>
+        <p class="panel__label">.expression</p>
+      </div>
+      <div class="panel" style="min-width:200px">
+        <div class="photo" style="height:120px">🐶</div>
+        <p class="panel__label">.photo</p>
+      </div>
+    </div>
+
+    <h3>입력 · 토글</h3>
+    <div class="demo">
+      <div class="panel" style="min-width:300px">
+        <label class="field">
+          <span class="field__label">내 표현 다듬기</span>
+          <input class="field__input" value="강아지가 귀여워 보여요" />
+        </label>
+        <div class="field field--error" style="margin-top:var(--space-md)">
+          <span class="field__label">이메일</span>
+          <input class="field__input" value="틀린입력" />
+          <span class="field__hint">올바른 형식이 아니에요.</span>
+        </div>
+        <p class="panel__label">.field · .field__input · .field--error</p>
+      </div>
+      <div class="panel">
+        <label class="switch">
+          <input type="checkbox" checked />
+          <span class="switch__track"></span>
+          <span class="switch__thumb"></span>
+        </label>
+        <p class="panel__label">.switch</p>
+      </div>
+    </div>
+
+    <h3>리스트 · 빈 상태 · 스켈레톤</h3>
+    <div class="demo">
+      <div class="panel" style="min-width:320px;padding:0;overflow:hidden">
+        <div class="list" style="box-shadow:none">
+          <a class="list-item">
+            <span class="list-item__icon">🐶</span>
+            <span class="list-item__text"><span class="list-item__title">강아지가 귀여워 보여요</span><span class="list-item__sub">~어 보여요 · 어제</span></span>
+            <span class="list-item__action">›</span>
+          </a>
+          <a class="list-item">
+            <span class="list-item__icon">🍚</span>
+            <span class="list-item__text"><span class="list-item__title">밥이 맛있어 보여요</span><span class="list-item__sub">~어 보여요 · 3일 전</span></span>
+            <span class="list-item__action">›</span>
+          </a>
+        </div>
+        <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.list · .list-item</p>
+      </div>
+      <div class="panel">
+        <div class="empty">
+          <div class="empty__icon">📭</div>
+          <div class="empty__title">아직 표현이 없어요</div>
+          <div class="empty__desc">사진을 찍어 첫 표현을 만들어 보세요.</div>
+        </div>
+        <p class="panel__label">.empty</p>
+      </div>
+      <div class="panel" style="min-width:220px">
+        <div class="stack-sm">
+          <div class="skeleton" style="height:80px"></div>
+          <div class="skeleton skeleton--text"></div>
+          <div class="skeleton skeleton--text skeleton--line-short"></div>
+        </div>
+        <p class="panel__label">.skeleton</p>
+      </div>
+    </div>
+
+    <h3>마이크 · 스피너 · 디바이더</h3>
+    <div class="demo">
+      <div class="panel" style="text-align:center">
+        <button class="mic is-recording" aria-label="녹음">🎙️</button>
+        <p class="panel__label">.mic.is-recording</p>
+      </div>
+      <div class="panel" style="text-align:center">
+        <div class="spinner" style="margin:0 auto"></div>
+        <p class="panel__label">.spinner</p>
+      </div>
+      <div class="panel" style="min-width:200px">
+        <span class="body">위</span>
+        <hr class="divider" />
+        <span class="body">아래</span>
+        <p class="panel__label">.divider</p>
+      </div>
+    </div>
+
+    <h3>오버레이 · 토스트 (Scrim / Sheet / Dialog / Toast)</h3>
+    <div class="demo">
+      <div class="panel" style="padding:0;min-width:300px">
+        <div class="overlay-demo">
+          <div class="scrim" style="z-index:auto">
+            <div class="sheet" style="animation:none">
+              <div class="sheet__handle"></div>
+              <p class="subhead">이 표현을 저장할까요?</p>
+              <p class="muted" style="font-size:var(--text-label);margin-top:var(--space-xs)">나중에 발음 연습에서 다시 볼 수 있어요.</p>
+              <button class="btn btn--accent" style="margin-top:var(--space-md)">저장</button>
+            </div>
+          </div>
+        </div>
+        <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.scrim + .sheet</p>
+      </div>
+      <div class="panel" style="padding:0;min-width:300px">
+        <div class="overlay-demo">
+          <div class="scrim scrim--center" style="z-index:auto">
+            <div class="dialog" style="animation:none">
+              <p class="dialog__title">삭제할까요?</p>
+              <p class="dialog__desc">이 표현이 영구히 사라집니다.</p>
+              <div class="dialog__actions row" style="justify-content:center">
+                <button class="btn btn--sm btn--ghost">취소</button>
+                <button class="btn btn--sm btn--danger">삭제</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.scrim--center + .dialog</p>
+      </div>
+      <div class="panel" style="padding:0;min-width:300px">
+        <div class="overlay-demo" style="background:var(--color-surface-alt)">
+          <div class="toast toast--success">✓ 표현을 저장했어요</div>
+        </div>
+        <p class="panel__label" style="padding:var(--space-sm) var(--space-md)">.toast--success</p>
       </div>
     </div>
   </div>
 
   <script>
     const root = getComputedStyle(document.documentElement);
-    const colorTokens = [
-      "--color-primary","--color-primary-dark","--color-accent","--color-accent-soft",
-      "--color-bg","--color-surface","--color-surface-alt","--color-on-surface",
-      "--color-on-surface-muted","--color-border","--color-success","--color-warning","--color-device",
-    ];
-    document.getElementById("swatches").innerHTML = colorTokens.map((t) => {
+    const swatch = (t) => {
       const val = root.getPropertyValue(t).trim();
       return `<div class="sw"><div class="sw__chip" style="background:var(${t})"></div>
-        <div class="sw__meta"><div class="sw__name">${t}</div><div class="sw__val">${val}</div></div></div>`;
-    }).join("");
+        <div class="sw__meta"><div class="sw__name">${t.replace("--color-", "")}</div><div class="sw__val">${val}</div></div></div>`;
+    };
+    const fill = (id, tokens) => { document.getElementById(id).innerHTML = tokens.map(swatch).join(""); };
 
-    const spaceTokens = ["--space-xs","--space-sm","--space-md","--space-lg","--space-xl","--space-2xl"];
+    fill("sw-base", [
+      "--color-primary","--color-primary-dark","--color-primary-soft","--color-accent","--color-accent-soft",
+      "--color-bg","--color-surface","--color-surface-alt","--color-on-surface","--color-on-surface-muted",
+      "--color-on-primary","--color-border","--color-device",
+    ]);
+    fill("sw-state", [
+      "--color-success","--color-success-soft","--color-warning","--color-warning-soft",
+      "--color-danger","--color-danger-soft","--color-info","--color-info-soft",
+    ]);
+    fill("sw-interaction", ["--color-focus","--color-disabled","--color-on-disabled","--color-scrim"]);
+
+    // line-height specimens
+    const leadings = [["--leading-tight","1.2"],["--leading-snug","1.35"],["--leading-normal","1.5"]];
+    document.getElementById("leading").innerHTML = leadings.map(([t]) =>
+      `<div class="panel"><p style="line-height:var(${t});font-size:var(--text-body)">사진을 찍으면<br>활용형 표현이<br>문장으로 완성돼요.</p><p class="panel__label">${t}</p></div>`
+    ).join("");
+
+    // spacing
+    const spaceTokens = ["--space-2xs","--space-xs","--space-sm","--space-md","--space-lg","--space-xl","--space-2xl","--space-3xl"];
     document.getElementById("spacing").innerHTML = spaceTokens.map((t) => {
       const val = root.getPropertyValue(t).trim();
       return `<div class="space-row"><code>${t} (${val})</code><div class="space-bar" style="width:var(${t})"></div></div>`;
     }).join("");
+
+    // radius
+    const radii = ["--radius-sm","--radius-md","--radius-lg","--radius-pill"];
+    document.getElementById("radius").innerHTML = radii.map((t) =>
+      `<div class="specimen__box"><div class="radius-box" style="border-radius:var(${t})"></div><p class="panel__label">${t}</p></div>`
+    ).join("");
+
+    // elevation
+    const elevs = ["--shadow-soft","--shadow-card","--shadow-overlay"];
+    document.getElementById("elevation").innerHTML = elevs.map((t) =>
+      `<div class="specimen__box"><div class="elev-box" style="box-shadow:var(${t})"></div><p class="panel__label">${t}</p></div>`
+    ).join("");
+
+    // motion
+    const durations = ["--duration-fast","--duration-base","--duration-slow"];
+    const eases = ["--ease-standard","--ease-out"];
+    document.getElementById("motion").innerHTML =
+      durations.map((t) => `<div class="type-row"><code>${t}</code> · <span class="caption">${root.getPropertyValue(t).trim()}</span></div>`).join("") +
+      eases.map((t) => `<div class="type-row"><code>${t}</code> · <span class="caption">${root.getPropertyValue(t).trim()}</span></div>`).join("");
   </script>
 </body>
 </html>
