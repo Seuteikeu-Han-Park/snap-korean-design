@@ -1,28 +1,50 @@
-# Snap Korean — Design Gallery 🎨
+# Snap Korean — Design System & Gallery 🎨
 
-[Snap Korean](https://github.com/Seuteikeu-Han-Park/snap-korean) 앱 디자인을 **HTML 목업**으로 만들어 GitHub Pages로 공유하는 레포. (Figma 대체)
+[Snap Korean](https://github.com/Seuteikeu-Han-Park/snap-korean) 앱의 **디자인 시스템 + 화면 목업**을 HTML로 만들어 GitHub Pages로 공유하는 레포. (Figma 대체)
 
 **라이브**: https://seuteikeu-han-park.github.io/snap-korean-design/
 
-## 왜 HTML + Pages인가
+- 🎨 디자인 시스템: https://seuteikeu-han-park.github.io/snap-korean-design/#/system
+- 📱 화면: `#/capture` · `#/expression` · `#/pronunciation`
 
-- **단일 토큰 소스**: `assets/tokens.css`의 색·타이포·간격이 Flutter `AppColors/AppSpacing/AppTypography`와 같은 값 → 디자인↔코드 드리프트 감소
-- **버전 관리·PR 리뷰**: 디자인 변경이 diff로 남고 PR에서 리뷰
-- **공유 URL 1개**: 계정·권한 없이 누구나, 모바일에서도 바로 확인
-
-## 구조
+## 핵심 구조 — 토큰 한 곳, 일괄 적용
 
 ```
-index.html              ← 갤러리 (폰 프레임에 화면 iframe 임베드)
+tokens.css        ← 값(색·타이포·간격)을 정의하는 유일한 곳  ★ 단일 소스
+   │  (var()로만 참조)
+   ├─ components.css   ← 버튼·칩·카드·폰 프레임 등 컴포넌트 (하드코딩 값 0)
+   └─ shell.css        ← 사이트 레이아웃(사이드바 내비)
+        │
+        ▼  소비
+design-system.html   ← 토큰·컴포넌트 라이브 스타일 가이드
+screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만 사용)
+```
+
+**`tokens.css`의 변수 하나만 바꾸면** 디자인 시스템 페이지와 모든 화면에 동시에 반영됩니다.
+예: `--color-primary` 를 바꾸면 버튼·칩·마이크·폰 강조색이 전부 따라옵니다.
+같은 토큰을 Flutter `AppColors/AppSpacing/AppTypography`에 맞추면 디자인↔코드 드리프트가 사라집니다.
+
+## 파일
+
+```
+index.html              ← 셸: 좌측 사이드바 내비 + 콘텐츠(해시 라우팅 #/system, #/capture …)
+design-system.html      ← 디자인 시스템 페이지 (값은 tokens.css에서 실시간 표시)
 assets/
-  tokens.css            ← 디자인 토큰 (단일 소스)
-  gallery.css           ← 갤러리 + 폰 프레임 + UI 프리미티브
+  tokens.css            ← ★ 디자인 토큰 (단일 소스)
+  components.css         ← 컴포넌트 (토큰만 사용)
+  shell.css             ← 사이트 레이아웃
 screens/
-  capture.html          ← 1 · 촬영
-  expression.html       ← 2 · 내 표현 (히어로)
-  pronunciation.html    ← 3 · 발음 연습
+  capture.html · expression.html · pronunciation.html
 .github/workflows/pages.yml   ← main push 시 자동 배포
 ```
+
+## 디자인 변경하기 (일괄 적용)
+
+1. **색/글자/간격을 바꾼다** → `assets/tokens.css`의 해당 변수만 수정. (다른 파일 손대지 않음)
+2. **새 컴포넌트를 추가한다** → `assets/components.css`에 클래스 추가 (값은 `var(--token)`만).
+3. **새 화면을 추가한다** → `screens/<name>.html` (`components.css` 링크 + 컴포넌트 클래스),
+   `index.html`의 `routes`와 사이드바에 항목 추가.
+4. main에 push → Pages 자동 갱신.
 
 ## 로컬 미리보기
 
@@ -30,12 +52,6 @@ screens/
 cd snap-korean-design && python3 -m http.server 8000
 # http://localhost:8000
 ```
-
-## 화면 추가
-
-1. `screens/<name>.html` 작성 — `<link rel="stylesheet" href="../assets/gallery.css">` 후 `.screen` 마크업.
-2. `index.html` 갤러리에 `.gallery__item` 카드 추가 (iframe src).
-3. main에 push → Pages 자동 갱신.
 
 ## 디자인 원칙 (Lisa 페르소나)
 

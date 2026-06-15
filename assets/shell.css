@@ -1,0 +1,70 @@
+/* ============================================================
+ * Snap Korean — SHELL (sidebar nav + content area for the gallery site)
+ * 화면 자체 스타일이 아니라 사이트 레이아웃. tokens.css 변수만 사용.
+ * ============================================================ */
+@import url("tokens.css");
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-on-surface);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app { display: flex; height: 100vh; }
+
+/* ---------- Sidebar ---------- */
+.nav {
+  width: var(--nav-width); flex-shrink: 0; height: 100%;
+  background: var(--color-surface); border-right: 1px solid var(--color-border);
+  padding: var(--space-lg) var(--space-md);
+  overflow-y: auto;
+}
+.nav__brand { font-size: var(--text-h2); font-weight: var(--weight-bold); }
+.nav__tagline {
+  font-size: var(--text-label); color: var(--color-on-surface-muted);
+  margin-top: var(--space-xs); line-height: 1.4;
+}
+.nav__section {
+  font-size: 12px; font-weight: var(--weight-bold); letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--color-on-surface-muted);
+  margin: var(--space-lg) 0 var(--space-sm) var(--space-sm);
+}
+.nav__link {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm);
+  font-size: var(--text-body); font-weight: var(--weight-medium);
+  color: var(--color-on-surface); text-decoration: none; cursor: pointer;
+}
+.nav__link:hover { background: var(--color-surface-alt); }
+.nav__link.is-active { background: var(--color-primary); color: var(--color-on-primary); }
+.nav__link .num {
+  width: 24px; height: 24px; border-radius: var(--radius-pill);
+  background: var(--color-surface-alt); color: var(--color-primary-dark);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: var(--weight-bold);
+}
+.nav__link.is-active .num { background: rgba(255,255,255,0.25); color: var(--color-on-primary); }
+
+/* ---------- Content ---------- */
+.content {
+  flex: 1; height: 100%; overflow-y: auto;
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--space-xl);
+}
+.content.is-screen { background: var(--color-bg); }
+.content.is-page { align-items: stretch; padding: 0; }
+.content__frame { border: none; width: 100%; height: 100%; }
+
+/* phone wrapper visible only in screen mode */
+.viewport-phone { display: none; }
+.content.is-screen .viewport-phone { display: flex; }
+.content.is-screen .content__frame { display: none; }
+
+@media (max-width: 720px) {
+  .app { flex-direction: column; }
+  .nav { width: 100%; height: auto; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs); }
+  .nav__section { display: none; }
+}

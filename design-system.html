@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snap Korean · 디자인 시스템</title>
+  <link rel="stylesheet" href="assets/components.css" />
+  <style>
+    .ds { max-width: 920px; margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
+    .ds__title { font-size: 34px; font-weight: var(--weight-bold); }
+    .ds__lead { color: var(--color-on-surface-muted); font-size: var(--text-body); margin-top: var(--space-sm); line-height: 1.5; }
+    .ds__note { background: var(--color-surface-alt); color: var(--color-primary-dark);
+      border-radius: var(--radius-md); padding: var(--space-md) var(--space-lg);
+      font-size: var(--text-label); margin-top: var(--space-lg); font-weight: var(--weight-medium); }
+    .ds h2 { font-size: var(--text-h1); margin: var(--space-2xl) 0 var(--space-md); }
+    .grid { display: grid; gap: var(--space-md); }
+    .grid--sw { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+    .sw { background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); overflow: hidden; }
+    .sw__chip { height: 64px; }
+    .sw__meta { padding: var(--space-sm) var(--space-md); }
+    .sw__name { font-size: var(--text-label); font-weight: var(--weight-bold); }
+    .sw__val { font-size: 13px; color: var(--color-on-surface-muted); font-family: ui-monospace, monospace; }
+    .type-row { padding: var(--space-sm) 0; border-bottom: 1px solid var(--color-border); }
+    .type-row code { font-size: 13px; color: var(--color-on-surface-muted); }
+    .space-row { display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-sm); }
+    .space-bar { height: 16px; background: var(--color-primary); border-radius: var(--radius-sm); }
+    .space-row code { width: 130px; font-size: 13px; color: var(--color-on-surface-muted); }
+    .demo { display: flex; gap: var(--space-lg); flex-wrap: wrap; align-items: flex-start; }
+    .demo > div { background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--space-lg); min-width: 220px; }
+  </style>
+</head>
+<body>
+  <div class="ds">
+    <h1 class="ds__title">디자인 시스템</h1>
+    <p class="ds__lead">
+      이 페이지의 모든 색·글자·간격·컴포넌트는 <code>assets/tokens.css</code>의 변수에서 옵니다.
+      <b>토큰 한 값만 바꾸면 이 페이지와 모든 화면(촬영·내 표현·발음)에 동시에 반영됩니다.</b>
+    </p>
+    <p class="ds__note">🎨 단일 소스: tokens.css(값) → components.css(토큰만 사용) → screens/*.html · Flutter AppColors/AppSpacing/AppTypography</p>
+
+    <h2>색 (Color)</h2>
+    <div class="grid grid--sw" id="swatches"></div>
+
+    <h2>타이포 (Typography)</h2>
+    <div>
+      <div class="type-row"><span style="font-size:var(--text-display);font-weight:700">강아지가 귀여워 보여요</span> <code>--text-display 32 / 표현 문장</code></div>
+      <div class="type-row"><span style="font-size:var(--text-h1);font-weight:700">오늘 본 것을 찍어보세요</span> <code>--text-h1 24</code></div>
+      <div class="type-row"><span style="font-size:var(--text-h2);font-weight:600">발음 연습하기</span> <code>--text-h2 20</code></div>
+      <div class="type-row"><span style="font-size:var(--text-body)">명사만 외우는 게 아니라 바로 말이 됩니다.</span> <code>--text-body 17 / 본문</code></div>
+      <div class="type-row"><span style="font-size:var(--text-label);color:var(--color-on-surface-muted)">3단계 · 내 표현</span> <code>--text-label 15</code></div>
+    </div>
+
+    <h2>간격 (Spacing)</h2>
+    <div id="spacing"></div>
+
+    <h2>컴포넌트 (Components)</h2>
+    <div class="demo">
+      <div style="min-width:240px">
+        <button class="btn">📸 &nbsp;사진 찍기</button>
+        <button class="btn btn--ghost">갤러리에서 고르기</button>
+        <p class="sw__val" style="margin-top:8px">.btn / .btn--ghost</p>
+      </div>
+      <div>
+        <div class="row"><span class="chip chip--noun">강아지</span><span class="chip chip--conj">~어 보여요</span></div>
+        <p class="sw__val" style="margin-top:8px">.chip--noun / .chip--conj</p>
+      </div>
+      <div>
+        <div class="card card--hint"><p class="muted" style="font-size:15px;color:var(--color-primary-dark)">💡 힌트 카드</p></div>
+        <div class="card card--accent" style="margin-top:12px"><b style="color:var(--color-success)">좋아요! 👏</b></div>
+        <p class="sw__val" style="margin-top:8px">.card--hint / .card--accent</p>
+      </div>
+      <div>
+        <p class="expression">강아지가<br />귀여워 보여요</p>
+        <p class="sw__val" style="margin-top:8px">.expression</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const root = getComputedStyle(document.documentElement);
+    const colorTokens = [
+      "--color-primary","--color-primary-dark","--color-accent","--color-accent-soft",
+      "--color-bg","--color-surface","--color-surface-alt","--color-on-surface",
+      "--color-on-surface-muted","--color-border","--color-success","--color-warning","--color-device",
+    ];
+    document.getElementById("swatches").innerHTML = colorTokens.map((t) => {
+      const val = root.getPropertyValue(t).trim();
+      return `<div class="sw"><div class="sw__chip" style="background:var(${t})"></div>
+        <div class="sw__meta"><div class="sw__name">${t}</div><div class="sw__val">${val}</div></div></div>`;
+    }).join("");
+
+    const spaceTokens = ["--space-xs","--space-sm","--space-md","--space-lg","--space-xl","--space-2xl"];
+    document.getElementById("spacing").innerHTML = spaceTokens.map((t) => {
+      const val = root.getPropertyValue(t).trim();
+      return `<div class="space-row"><code>${t} (${val})</code><div class="space-bar" style="width:var(${t})"></div></div>`;
+    }).join("");
+  </script>
+</body>
+</html>

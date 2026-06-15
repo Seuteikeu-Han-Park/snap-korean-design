@@ -1,20 +1,26 @@
-/* Snap Korean — Design Tokens (single source for HTML mockups ↔ Flutter app)
+/* ============================================================
+ * Snap Korean — DESIGN TOKENS (single source of truth)
+ * 이 파일의 변수만 바꾸면 디자인 시스템 페이지와 모든 화면에 일괄 반영된다.
  * Flutter 매핑: AppColors / AppSpacing / AppTypography (lib/shared/theme/).
- * 테크 비친화 학습자(Lisa) 기준: 큰 글씨, 따뜻한 톤, 높은 대비. */
+ * 원칙: 색·간격·타이포 "값"은 오직 여기에서만 정의한다. 다른 CSS는 var()만 쓴다.
+ * ============================================================ */
 :root {
   /* ---- Color ---- */
   --color-primary: #ff6b54;        /* 따뜻한 코랄 — snap/촬영 액션 */
   --color-primary-dark: #e2533d;
   --color-accent: #2bb673;         /* 성공/학습 진행 (Success-First) */
-  --color-bg: #fff8f3;             /* 부드러운 배경 */
+  --color-accent-soft: #e3f5ec;
+  --color-bg: #fff8f3;
   --color-surface: #ffffff;
   --color-surface-alt: #fdeee6;
-  --color-on-surface: #2a2320;     /* 본문 (높은 대비) */
+  --color-on-surface: #2a2320;
   --color-on-surface-muted: #7a6f68;
   --color-on-primary: #ffffff;
   --color-border: #f0ddd2;
   --color-success: #2bb673;
   --color-warning: #f4a734;
+  --color-device: #1d1714;         /* 폰 프레임 */
+  --gradient-photo: linear-gradient(135deg, #ffd9c7, #ffb59c);
 
   /* ---- Spacing (4 배수) ---- */
   --space-xs: 4px;
@@ -45,4 +51,7 @@
   /* ---- Elevation ---- */
   --shadow-card: 0 8px 24px rgba(226, 83, 61, 0.12);
   --shadow-soft: 0 2px 10px rgba(42, 35, 32, 0.06);
+
+  /* ---- Shell (nav) ---- */
+  --nav-width: 248px;
 }
