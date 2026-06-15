@@ -22,7 +22,34 @@ screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만
 
 **`tokens.css`의 변수 하나만 바꾸면** 디자인 시스템 페이지와 모든 화면에 동시에 반영됩니다.
 예: `--color-primary` 를 바꾸면 버튼·칩·마이크·폰 강조색이 전부 따라옵니다.
-같은 토큰을 Flutter `AppColors/AppSpacing/AppTypography`에 맞추면 디자인↔코드 드리프트가 사라집니다.
+같은 토큰을 Flutter `AppColors/AppSpacing/AppTypography/AppMotion`에 맞추면 디자인↔코드 드리프트가 사라집니다.
+
+### 토큰 인벤토리
+
+| 그룹 | 토큰 |
+| --- | --- |
+| Color · 브랜드 | `--color-primary` / `-dark` / `-soft`, `--color-accent` / `-soft` |
+| Color · 표면/텍스트 | `--color-bg`, `--color-surface` / `-alt`, `--color-on-surface` / `-muted`, `--color-on-primary`, `--color-border` |
+| Color · 상태 | `--color-success/warning/danger/info` (+ 각 `-soft`) |
+| Color · 상호작용 | `--color-focus`, `--color-disabled`, `--color-on-disabled`, `--color-scrim` |
+| Spacing | `--space-2xs … --space-3xl` (4px 배수) |
+| Radius | `--radius-sm/md/lg/pill/circle` |
+| Border | `--border-width`, `--border-width-strong` |
+| Sizing | `--tap-target` (44px, 접근성), `--nav-width` |
+| Typography | `--text-display/h1/h2/body/label/caption`, `--weight-*`, `--leading-tight/snug/normal`, `--tracking-wide`, `--font` / `--font-mono` |
+| Elevation | `--shadow-soft/card/overlay` |
+| Motion | `--duration-fast/base/slow`, `--ease-standard/out`, `--transition-base` |
+| Z-index | `--z-base/nav/scrim/modal/toast` |
+
+### 컴포넌트 인벤토리
+
+`.btn` (`--ghost/accent/danger/sm`, `.is-loading`, `:disabled`) · `.icon-btn` · `.appbar` ·
+`.steps` · `.progress` · `.chip` (`--noun/conj/selectable`) · `.badge` (`--success/warning/danger/info`) ·
+`.card` (`--hint/accent/danger`) · `.expression` · `.photo` · `.field` (`--error`) · `.switch` ·
+`.list` / `.list-item` · `.empty` · `.skeleton` · `.mic` (`.is-recording`) · `.spinner` · `.divider` ·
+`.scrim` / `.sheet` / `.dialog` / `.toast` · 텍스트/간격 헬퍼(`.display/.headline/.subhead/.body/.muted/.caption/.link`, `.stack-*`, `.row`).
+
+**접근성**: 키보드 `:focus-visible` 링, 최소 터치 영역 44px, `prefers-reduced-motion` 자동 대응, `.sr-only` 헬퍼.
 
 ## 파일
 

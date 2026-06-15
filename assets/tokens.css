@@ -1,57 +1,104 @@
 /* ============================================================
  * Snap Korean — DESIGN TOKENS (single source of truth)
  * 이 파일의 변수만 바꾸면 디자인 시스템 페이지와 모든 화면에 일괄 반영된다.
- * Flutter 매핑: AppColors / AppSpacing / AppTypography (lib/shared/theme/).
+ * Flutter 매핑: AppColors / AppSpacing / AppTypography / AppMotion (lib/shared/theme/).
  * 원칙: 색·간격·타이포 "값"은 오직 여기에서만 정의한다. 다른 CSS는 var()만 쓴다.
  * ============================================================ */
 :root {
-  /* ---- Color ---- */
+  /* ---- Color · Brand ---- */
   --color-primary: #ff6b54;        /* 따뜻한 코랄 — snap/촬영 액션 */
-  --color-primary-dark: #e2533d;
+  --color-primary-dark: #e2533d;   /* hover/active, 텍스트 위 강조 */
+  --color-primary-soft: #ffe7df;   /* primary 위에 얹는 옅은 배경 */
   --color-accent: #2bb673;         /* 성공/학습 진행 (Success-First) */
   --color-accent-soft: #e3f5ec;
-  --color-bg: #fff8f3;
-  --color-surface: #ffffff;
-  --color-surface-alt: #fdeee6;
-  --color-on-surface: #2a2320;
-  --color-on-surface-muted: #7a6f68;
-  --color-on-primary: #ffffff;
-  --color-border: #f0ddd2;
+
+  /* ---- Color · Surface & Text ---- */
+  --color-bg: #fff8f3;             /* 앱 배경 */
+  --color-surface: #ffffff;        /* 카드·시트 표면 */
+  --color-surface-alt: #fdeee6;    /* 보조 표면(힌트·칩) */
+  --color-on-surface: #2a2320;     /* 본문 텍스트 */
+  --color-on-surface-muted: #7a6f68; /* 보조 텍스트 */
+  --color-on-primary: #ffffff;     /* primary 위 텍스트 */
+  --color-border: #f0ddd2;         /* 구분선·테두리 */
+
+  /* ---- Color · Semantic state ---- */
   --color-success: #2bb673;
+  --color-success-soft: #e3f5ec;
   --color-warning: #f4a734;
+  --color-warning-soft: #fdf0d8;
+  --color-danger: #e5484d;         /* 오류·삭제 */
+  --color-danger-soft: #fcebec;
+  --color-info: #3a8dde;           /* 안내 */
+  --color-info-soft: #e6f1fc;
+
+  /* ---- Color · Interaction state ---- */
+  --color-focus: #3a8dde;          /* 포커스 링 (키보드 접근성) */
+  --color-disabled: #ece2db;       /* 비활성 배경 */
+  --color-on-disabled: #b3a79f;    /* 비활성 텍스트 */
+  --color-scrim: rgba(29, 23, 20, 0.45); /* 모달/시트 뒤 어둠막 */
   --color-device: #1d1714;         /* 폰 프레임 */
   --gradient-photo: linear-gradient(135deg, #ffd9c7, #ffb59c);
 
   /* ---- Spacing (4 배수) ---- */
+  --space-2xs: 2px;
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 32px;
   --space-2xl: 48px;
+  --space-3xl: 64px;
 
   /* ---- Radius ---- */
   --radius-sm: 10px;
   --radius-md: 18px;
   --radius-lg: 28px;
   --radius-pill: 999px;
+  --radius-circle: 50%;
 
-  /* ---- Typography (큰 본문 기본) ---- */
+  /* ---- Border ---- */
+  --border-width: 1px;
+  --border-width-strong: 2px;     /* ghost 버튼·강조 카드 */
+
+  /* ---- Sizing ---- */
+  --tap-target: 44px;             /* 최소 터치 영역(접근성) */
+  --nav-width: 248px;             /* 사이드바 */
+
+  /* ---- Typography ---- */
   --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
   --text-display: 32px;   /* 표현 문장 (주인공) */
   --text-h1: 24px;
   --text-h2: 20px;
   --text-body: 17px;      /* 본문 최소 17 */
   --text-label: 15px;
+  --text-caption: 13px;   /* 메타·코드·보조 라벨 */
   --weight-bold: 700;
   --weight-medium: 600;
   --weight-regular: 400;
+  --leading-tight: 1.2;    /* 디스플레이·헤드라인 */
+  --leading-snug: 1.35;    /* 표현 문장 */
+  --leading-normal: 1.5;   /* 본문 */
+  --tracking-wide: 0.06em; /* 대문자 섹션 라벨 */
 
   /* ---- Elevation ---- */
-  --shadow-card: 0 8px 24px rgba(226, 83, 61, 0.12);
-  --shadow-soft: 0 2px 10px rgba(42, 35, 32, 0.06);
+  --shadow-soft: 0 2px 10px rgba(42, 35, 32, 0.06);   /* 카드 */
+  --shadow-card: 0 8px 24px rgba(226, 83, 61, 0.12);  /* 떠 있는 버튼·강조 */
+  --shadow-overlay: 0 16px 48px rgba(29, 23, 20, 0.22); /* 모달·바텀시트·토스트 */
 
-  /* ---- Shell (nav) ---- */
-  --nav-width: 248px;
+  /* ---- Motion ---- */
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* 표준 진입/이동 */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);        /* 사라짐 */
+  --transition-base: var(--duration-base) var(--ease-standard);
+
+  /* ---- Z-index scale ---- */
+  --z-base: 1;
+  --z-nav: 100;
+  --z-scrim: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
 }
