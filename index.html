@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snap Korean — Design</title>
+  <title>LifeVocab — Design</title>
   <link rel="stylesheet" href="assets/shell.css" />
 </head>
 <body>
   <div class="app">
     <nav class="nav">
-      <div class="nav__brand"><i data-lucide="camera"></i> Snap Korean</div>
-      <div class="nav__tagline">사진 → 활용형 표현 학습 앱<br />디자인 시스템 & 화면</div>
+      <div class="nav__brand"><i data-lucide="camera"></i> LifeVocab</div>
+      <div class="nav__tagline">사진으로 찍고, 생활 속 단어를 바로 배우는 앱<br />디자인 시스템 & 화면</div>
 
       <div class="nav__section">디자인 시스템</div>
       <a class="nav__link" href="#/system" data-route="system"><i data-lucide="palette"></i> 토큰 & 컴포넌트</a>
 
       <div class="nav__section">화면</div>
       <a class="nav__link" href="#/capture" data-route="capture"><span class="num">1</span> 촬영</a>
-      <a class="nav__link" href="#/expression" data-route="expression"><span class="num">2</span> 내 표현</a>
-      <a class="nav__link" href="#/pronunciation" data-route="pronunciation"><span class="num">3</span> 발음 연습</a>
+      <a class="nav__link" href="#/log" data-route="log"><span class="num">2</span> 로그</a>
+      <a class="nav__link" href="#/result" data-route="result"><span class="num">3</span> 결과</a>
+      <a class="nav__link" href="#/review" data-route="review"><span class="num">4</span> 복습</a>
     </nav>
 
     <main class="content is-page">
@@ -40,8 +41,9 @@
     const routes = {
       system: { type: "page", src: "design-system.html" },
       capture: { type: "screen", src: "screens/capture.html" },
-      expression: { type: "screen", src: "screens/expression.html" },
-      pronunciation: { type: "screen", src: "screens/pronunciation.html" },
+      log: { type: "screen", src: "screens/log.html" },
+      result: { type: "screen", src: "screens/result.html" },
+      review: { type: "screen", src: "screens/review.html" },
     };
     function render() {
       let key = location.hash.replace(/^#\/?/, "") || "system";

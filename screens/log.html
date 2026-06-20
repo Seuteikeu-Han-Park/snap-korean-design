@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LifeVocab · 로그</title>
+  <link rel="stylesheet" href="../assets/components.css" />
+  <style> html,body{height:100%} body{display:flex} .screen{flex:1} </style>
+</head>
+<body>
+  <div class="screen">
+    <div class="statusbar">
+      <span>9:41</span>
+      <span class="statusbar__icons">
+        <i data-lucide="signal-high"></i><i data-lucide="wifi"></i><i data-lucide="battery-full"></i>
+      </span>
+    </div>
+
+    <div class="appbar">
+      <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
+      <span class="appbar__step">2단계 · 학습 로그</span>
+    </div>
+    <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
+      <span class="steps__dot is-done"></span>
+      <span class="steps__dot is-active"></span>
+      <span class="steps__dot"></span>
+      <span class="steps__dot"></span>
+    </div>
+
+    <div class="screen__body stack-md">
+      <div class="card">
+        <p class="caption">TODAY</p>
+        <p class="headline" style="margin-top:var(--space-xs)">LifeVocab으로 오늘 4개의 단어를 모았어요</p>
+        <p class="muted" style="margin-top:var(--space-sm)">지금 복습하면 기억이 더 오래 남는 단어가 2개 있어요.</p>
+      </div>
+
+      <div class="row">
+        <span class="badge badge--info">저장 4</span>
+        <span class="badge badge--success">복습 준비 2</span>
+        <span class="badge">실내 사물</span>
+      </div>
+
+      <div class="list">
+        <a class="list-item">
+          <span class="list-item__icon">💡</span>
+          <span class="list-item__text"><span class="list-item__title">ceiling light</span><span class="list-item__sub">천장 조명 · 오늘 오전</span></span>
+          <span class="list-item__action"><i data-lucide="chevron-right"></i></span>
+        </a>
+        <a class="list-item">
+          <span class="list-item__icon">🍎</span>
+          <span class="list-item__text"><span class="list-item__title">apple</span><span class="list-item__sub">사과 · 예문 저장 완료</span></span>
+          <span class="list-item__action"><i data-lucide="chevron-right"></i></span>
+        </a>
+        <a class="list-item">
+          <span class="list-item__icon">☕</span>
+          <span class="list-item__text"><span class="list-item__title">mug</span><span class="list-item__sub">머그컵 · 복습 추천</span></span>
+          <span class="list-item__action"><i data-lucide="chevron-right"></i></span>
+        </a>
+      </div>
+
+      <div class="spacer"></div>
+    </div>
+
+    <div class="screen__bottom">
+      <button class="btn"><i data-lucide="book-open"></i> 복습 시작하기</button>
+      <button class="btn btn--ghost"><i data-lucide="camera"></i> 새 사물 찍기</button>
+    </div>
+  </div>
+
+  <script src="../assets/glyphs.js" defer></script>
+</body>
+</html>

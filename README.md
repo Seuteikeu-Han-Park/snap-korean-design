@@ -1,11 +1,9 @@
-# Snap Korean — Design System & Gallery 🎨
+# LifeVocab — Design System & Gallery 🎨
 
-[Snap Korean](https://github.com/Seuteikeu-Han-Park/snap-korean) 앱의 **디자인 시스템 + 화면 목업**을 HTML로 만들어 GitHub Pages로 공유하는 레포. (Figma 대체)
+LifeVocab의 **디자인 시스템 + 화면 목업**을 HTML로 관리하는 폴더. 기획 문서에서 정한 브랜딩과 화면 구조를 바로 확인하고 조정하는 용도다.
 
-**라이브**: https://seuteikeu-han-park.github.io/snap-korean-design/
-
-- 🎨 디자인 시스템: https://seuteikeu-han-park.github.io/snap-korean-design/#/system
-- 📱 화면: `#/capture` · `#/expression` · `#/pronunciation`
+- 🎨 디자인 시스템: `#/system`
+- 📱 화면: `#/capture` · `#/log` · `#/result` · `#/review`
 
 ## 핵심 구조 — 토큰 한 곳, 일괄 적용
 
@@ -17,7 +15,7 @@ tokens.css        ← 값(색·타이포·간격)을 정의하는 유일한 곳 
         │
         ▼  소비
 design-system.html   ← 토큰·컴포넌트 라이브 스타일 가이드
-screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만 사용)
+screens/*.html       ← 촬영 / 로그 / 결과 / 복습 (컴포넌트 클래스만 사용)
 ```
 
 **`tokens.css`의 변수 하나만 바꾸면** 디자인 시스템 페이지와 모든 화면에 동시에 반영됩니다.
@@ -58,7 +56,7 @@ screens/*.html       ← 촬영 / 내 표현 / 발음 (컴포넌트 클래스만
 ### 아이콘 & 이모지
 
 - **UI 아이콘 = [Lucide](https://lucide.dev)** — `<i data-lucide="camera"></i>` 형태로 작성, `currentColor`/`1em`로 토큰 색·크기를 따른다.
-- **표현용 이모지 = [Twemoji](https://github.com/jdecked/twemoji)(트위터 이모지)** — 본문에 이모지 문자(🐶 👏)를 그대로 쓰면 자동으로 트위터 SVG로 치환.
+- **보조 이모지 = [Twemoji](https://github.com/jdecked/twemoji)(트위터 이모지)** — 본문에 이모지 문자(💡 📘)를 그대로 쓰면 자동으로 SVG로 치환.
 - 두 가지 모두 `assets/glyphs.js`가 CDN에서 로드·렌더한다. 동적으로 DOM을 추가했다면 `window.renderGlyphs()` 호출.
 - 회전 다이얼 동작은 `assets/dial.js`(촬영 화면 전용).
 
@@ -74,7 +72,7 @@ assets/
   glyphs.js             ← Lucide 아이콘 + Twemoji 이모지 로더
   dial.js               ← 회전식 촬영 모드 다이얼 동작
 screens/
-  capture.html · expression.html · pronunciation.html
+  capture.html · log.html · result.html · review.html
 .github/workflows/pages.yml   ← main push 시 자동 배포
 ```
 
@@ -89,11 +87,14 @@ screens/
 ## 로컬 미리보기
 
 ```bash
-cd snap-korean-design && python3 -m http.server 8000
+cd design && python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-## 디자인 원칙 (Lisa 페르소나)
+## 디자인 원칙
 
-테크 비친화 학습자 기준 — 큰 글씨(본문 17+), 따뜻한 톤, 화면당 단일 CTA, Success-First.
-코어 메시지: **명사가 아니라 활용형 표현(문장)**. 자세한 건 앱 레포 `AGENTS.md`.
+- 앱 이름: `LifeVocab`
+- 메인 컬러: `#D7C5F7`
+- 레퍼런스는 참고만 하고, 배치와 컴포넌트 조합은 독자적으로 설계
+- 핵심 흐름: `찍는다 → 바로 안다 → 저장한다 → 다시 본다`
+- 큰 글씨, 넓은 여백, 카드 중심 구조, 빠른 학습 액션을 우선

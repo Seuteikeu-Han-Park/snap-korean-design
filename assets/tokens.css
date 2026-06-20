@@ -1,48 +1,48 @@
 /* ============================================================
- * Snap Korean — DESIGN TOKENS (single source of truth)
+ * LifeVocab — DESIGN TOKENS (single source of truth)
  * 이 파일의 변수만 바꾸면 디자인 시스템 페이지와 모든 화면에 일괄 반영된다.
  * Flutter 매핑: AppColors / AppSpacing / AppTypography / AppMotion (lib/shared/theme/).
  * 원칙: 색·간격·타이포 "값"은 오직 여기에서만 정의한다. 다른 CSS는 var()만 쓴다.
  * ============================================================ */
 :root {
   /* ---- Color · Brand ---- */
-  --color-primary: #ff6b54;        /* 따뜻한 코랄 — snap/촬영 액션 */
-  --color-primary-dark: #e2533d;   /* hover/active, 텍스트 위 강조 */
-  --color-primary-soft: #ffe7df;   /* primary 위에 얹는 옅은 배경 */
-  --color-accent: #2bb673;         /* 성공/학습 진행 (Success-First) */
-  --color-accent-soft: #e3f5ec;
+  --color-primary: #d7c5f7;        /* LifeVocab primary */
+  --color-primary-dark: #7c62a9;   /* hover/active, 텍스트 위 강조 */
+  --color-primary-soft: #f3eefc;   /* primary 위에 얹는 옅은 배경 */
+  --color-accent: #7fc6ef;         /* 보조 강조 */
+  --color-accent-soft: #eaf7ff;
 
   /* ---- Color · Surface & Text ---- */
-  --color-bg: #fff8f3;             /* 앱 배경 */
+  --color-bg: #fcf9ff;             /* 앱 배경 */
   --color-surface: #ffffff;        /* 카드·시트 표면 */
-  --color-surface-alt: #fdeee6;    /* 보조 표면(힌트·칩) */
-  --color-on-surface: #2a2320;     /* 본문 텍스트 */
-  --color-on-surface-muted: #7a6f68; /* 보조 텍스트 */
-  --color-on-primary: #ffffff;     /* primary 위 텍스트 */
-  --color-border: #f0ddd2;         /* 구분선·테두리 */
+  --color-surface-alt: #f5f0fb;    /* 보조 표면(힌트·칩) */
+  --color-on-surface: #241f31;     /* 본문 텍스트 */
+  --color-on-surface-muted: #7b748d; /* 보조 텍스트 */
+  --color-on-primary: #241f31;     /* primary 위 텍스트 */
+  --color-border: #e6dcf4;         /* 구분선·테두리 */
 
   /* ---- Color · Semantic state ---- */
-  --color-success: #2bb673;
-  --color-success-soft: #e3f5ec;
+  --color-success: #3ca77e;
+  --color-success-soft: #e7f6ef;
   --color-warning: #f4a734;
   --color-warning-soft: #fdf0d8;
   --color-danger: #e5484d;         /* 오류·삭제 */
   --color-danger-soft: #fcebec;
-  --color-info: #3a8dde;           /* 안내 */
-  --color-info-soft: #e6f1fc;
+  --color-info: #5a92db;           /* 안내 */
+  --color-info-soft: #eaf2fe;
 
   /* ---- Color · Interaction state ---- */
-  --color-focus: #3a8dde;          /* 포커스 링 (키보드 접근성) */
-  --color-disabled: #ece2db;       /* 비활성 배경 */
-  --color-on-disabled: #b3a79f;    /* 비활성 텍스트 */
-  --color-scrim: rgba(29, 23, 20, 0.45); /* 모달/시트 뒤 어둠막 */
-  --color-device: #1d1714;         /* 폰 프레임 */
+  --color-focus: #7c62a9;          /* 포커스 링 (키보드 접근성) */
+  --color-disabled: #ece7f4;       /* 비활성 배경 */
+  --color-on-disabled: #b1a9c2;    /* 비활성 텍스트 */
+  --color-scrim: rgba(25, 20, 36, 0.45); /* 모달/시트 뒤 어둠막 */
+  --color-device: #1b1626;         /* 폰 프레임 */
 
   /* ---- Gradients ---- */
-  --gradient-primary: linear-gradient(135deg, #ff7c66 0%, #f1583f 100%); /* CTA */
-  --gradient-accent: linear-gradient(135deg, #34c486 0%, #1f9e63 100%);  /* 성공 CTA */
-  --gradient-photo: linear-gradient(150deg, #ffe0d0 0%, #ffc3a8 55%, #ffb59c 100%);
-  --gradient-bg: linear-gradient(180deg, #fff8f3 0%, #fff3ec 100%);
+  --gradient-primary: linear-gradient(135deg, #e7dbfb 0%, #ceb5f1 100%); /* CTA */
+  --gradient-accent: linear-gradient(135deg, #a6dcfb 0%, #72bde9 100%);  /* 보조 CTA */
+  --gradient-photo: linear-gradient(150deg, #f2eef8 0%, #e5ddf3 55%, #d5c7ed 100%);
+  --gradient-bg: linear-gradient(180deg, #fdfbff 0%, #f6f1fc 100%);
 
   /* ---- Spacing (4 배수) ---- */
   --space-2xs: 2px;
@@ -74,7 +74,7 @@
   --font: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
     "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Menlo, monospace;
-  --text-display: 32px;   /* 표현 문장 (주인공) */
+  --text-display: 32px;   /* 핵심 단어/문장 */
   --text-h1: 24px;
   --text-h2: 20px;
   --text-body: 17px;      /* 본문 최소 17 */
@@ -84,15 +84,15 @@
   --weight-medium: 600;
   --weight-regular: 400;
   --leading-tight: 1.2;    /* 디스플레이·헤드라인 */
-  --leading-snug: 1.35;    /* 표현 문장 */
+  --leading-snug: 1.35;    /* 핵심 단어/문장 */
   --leading-normal: 1.5;   /* 본문 */
   --tracking-wide: 0.06em; /* 대문자 섹션 라벨 */
 
   /* ---- Elevation (레이어드 그림자: 가까운 + 멀리 퍼지는) ---- */
-  --shadow-soft: 0 1px 2px rgba(42, 35, 32, 0.04), 0 4px 16px rgba(42, 35, 32, 0.06); /* 카드 */
-  --shadow-card: 0 2px 6px rgba(226, 83, 61, 0.10), 0 14px 32px rgba(226, 83, 61, 0.16); /* 떠 있는 버튼·강조 */
-  --shadow-overlay: 0 8px 18px rgba(29, 23, 20, 0.12), 0 28px 64px rgba(29, 23, 20, 0.26); /* 모달·시트·토스트 */
-  --shadow-press: 0 1px 3px rgba(42, 35, 32, 0.12); /* 눌림 상태 */
+  --shadow-soft: 0 1px 2px rgba(36, 31, 49, 0.04), 0 10px 24px rgba(36, 31, 49, 0.07); /* 카드 */
+  --shadow-card: 0 4px 10px rgba(124, 98, 169, 0.12), 0 18px 36px rgba(124, 98, 169, 0.18); /* 떠 있는 버튼·강조 */
+  --shadow-overlay: 0 8px 18px rgba(25, 20, 36, 0.12), 0 28px 64px rgba(25, 20, 36, 0.26); /* 모달·시트·토스트 */
+  --shadow-press: 0 1px 3px rgba(36, 31, 49, 0.12); /* 눌림 상태 */
 
   /* ---- Motion ---- */
   --duration-fast: 120ms;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snap Korean · 발음 연습</title>
+  <title>LifeVocab · 복습</title>
   <link rel="stylesheet" href="../assets/components.css" />
   <style> html,body{height:100%} body{display:flex} .screen{flex:1} </style>
 </head>
@@ -18,7 +18,7 @@
 
     <div class="appbar">
       <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
-      <span class="appbar__step">4단계 · 소리내어</span>
+      <span class="appbar__step">4단계 · 빠른 복습</span>
     </div>
     <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
       <span class="steps__dot is-done"></span>
@@ -27,29 +27,35 @@
       <span class="steps__dot is-active"></span>
     </div>
 
-    <div class="screen__body" style="text-align:center">
-      <div class="stack-sm">
-        <p class="expression">강아지가<br />귀여워 보여요</p>
-        <p class="muted">버튼을 누르고 따라 말해보세요</p>
+    <div class="screen__body stack-md">
+      <div class="photo" style="height:172px;font-size:72px">💡</div>
+
+      <div class="card">
+        <p class="headline">이 사진의 단어는?</p>
+        <p class="muted" style="margin-top:var(--space-xs)">방금 저장한 사물을 떠올리고 알맞은 단어를 골라보세요.</p>
       </div>
 
-      <div class="spacer"></div>
-      <button class="mic is-recording" aria-label="녹음 시작"><i data-lucide="mic"></i></button>
-      <div class="spacer"></div>
+      <div class="stack-sm">
+        <button class="btn btn--ghost">desk lamp</button>
+        <button class="btn btn--accent">ceiling light</button>
+        <button class="btn btn--ghost">window frame</button>
+      </div>
 
-      <div class="card card--accent" style="text-align:left">
+      <div class="card card--accent">
         <p class="row" style="gap:var(--space-xs);font-size:var(--text-h2);font-weight:var(--weight-bold);color:var(--color-success)">
-          <i data-lucide="check-circle-2"></i> 좋아요! 👏
+          <i data-lucide="check-circle-2"></i> 정답이에요
         </p>
         <p class="muted" style="font-size:var(--text-label);margin-top:var(--space-xs)">
-          또박또박 잘 말했어요. ‘귀여워’ 발음이 자연스러워요.
+          사진과 단어를 바로 연결해서 기억하는 흐름이 LifeVocab의 핵심입니다.
         </p>
       </div>
+
+      <div class="spacer"></div>
     </div>
 
     <div class="screen__bottom">
-      <button class="btn">다음 표현 <i data-lucide="arrow-right"></i></button>
-      <button class="btn btn--ghost"><i data-lucide="rotate-ccw"></i> 다시 듣기</button>
+      <button class="btn">다음 복습 <i data-lucide="arrow-right"></i></button>
+      <button class="btn btn--ghost"><i data-lucide="book-open"></i> 로그로 돌아가기</button>
     </div>
   </div>
 

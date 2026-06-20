@@ -1,5 +1,5 @@
 /* ============================================================
- * Snap Korean — COMPONENTS (built ONLY from tokens.css variables)
+ * LifeVocab — COMPONENTS (built ONLY from tokens.css variables)
  * 화면(screens/*.html)과 디자인 시스템 페이지가 공유한다.
  * 하드코딩 값 금지 — 색·간격·타이포·모션은 var(--token)만 사용.
  * (폰 프레임 등 구조적 픽셀 치수는 예외)
@@ -41,7 +41,7 @@ body {
 }
 
 /* ---------- Icons (Lucide) & Emoji (Twemoji) ---------- */
-/* UI 아이콘 = Lucide(<i data-lucide>), 표현용 이모지 = Twemoji(img.twemoji) */
+/* UI 아이콘 = Lucide(<i data-lucide>), 보조 이모지 = Twemoji(img.twemoji) */
 [data-lucide] { display: inline-block; width: 1.15em; height: 1.15em; }
 .lucide {
   width: 1.15em; height: 1.15em; vertical-align: -0.2em;
@@ -316,7 +316,7 @@ img.twemoji {
   transition: width var(--duration-slow) var(--ease-standard);
 }
 
-/* ---------- Steps (단계 인디케이터: 촬영→표현→발음) ---------- */
+/* ---------- Steps (단계 인디케이터: 촬영→로그→결과→복습) ---------- */
 .steps { display: flex; align-items: center; gap: var(--space-xs); }
 .steps__dot {
   width: var(--space-sm); height: var(--space-sm);
@@ -371,7 +371,7 @@ img.twemoji {
   outline: 3px solid var(--color-focus); outline-offset: 2px;
 }
 
-/* ---------- List (저장된 표현 등) ---------- */
+/* ---------- List (저장된 단어/로그 등) ---------- */
 .list { background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-soft); }
 .list-item {
   display: flex; align-items: center; gap: var(--space-md);
@@ -388,7 +388,7 @@ a.list-item:hover, .list-item--tappable:hover { background: var(--color-surface-
 .list-item__sub { font-size: var(--text-label); color: var(--color-on-surface-muted); }
 .list-item__action { color: var(--color-on-surface-muted); font-size: var(--text-h2); }
 
-/* ---------- Mic (pronunciation) ---------- */
+/* ---------- Mic (review / pronunciation style action) ---------- */
 .mic {
   position: relative;
   width: 116px; height: 116px; border-radius: var(--radius-circle);
@@ -407,9 +407,9 @@ a.list-item:hover, .list-item--tappable:hover { background: var(--color-surface-
 /* 녹음 중: 펄스 링 */
 .mic.is-recording { animation: mic-pulse 1.6s var(--ease-out) infinite; }
 @keyframes mic-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255, 107, 84, 0.45), var(--shadow-card); }
-  70%  { box-shadow: 0 0 0 28px rgba(255, 107, 84, 0), var(--shadow-card); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 107, 84, 0), var(--shadow-card); }
+  0%   { box-shadow: 0 0 0 0 rgba(124, 98, 169, 0.35), var(--shadow-card); }
+  70%  { box-shadow: 0 0 0 28px rgba(124, 98, 169, 0), var(--shadow-card); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 98, 169, 0), var(--shadow-card); }
 }
 
 /* ---------- Camera: viewfinder + mode dial + shutter (촬영) ---------- */
@@ -427,11 +427,11 @@ a.list-item:hover, .list-item--tappable:hover { background: var(--color-surface-
   width: 0; height: 0; z-index: 3;
   border-left: 7px solid transparent; border-right: 7px solid transparent;
   border-top: 11px solid var(--color-primary);
-  filter: drop-shadow(0 2px 2px rgba(226,83,61,0.3));
+  filter: drop-shadow(0 2px 2px rgba(124,98,169,0.28));
 }
 .dial {
   position: absolute; inset: 0; border-radius: var(--radius-circle);
-  background: radial-gradient(circle at 50% 32%, #ffffff 0%, #fff5ef 62%, #ffeee4 100%);
+  background: radial-gradient(circle at 50% 32%, #ffffff 0%, #faf6ff 62%, #f0e8fb 100%);
   box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,0.9),
     inset 0 0 0 var(--border-width) var(--color-border);
   touch-action: none; cursor: grab; user-select: none;
@@ -474,7 +474,7 @@ a.list-item:hover, .list-item--tappable:hover { background: var(--color-surface-
   background: var(--gradient-primary); color: var(--color-on-primary);
   display: grid; place-items: center; font-size: var(--text-h1);
   box-shadow: inset 0 0 0 4px var(--color-surface), 0 0 0 3px var(--color-primary),
-    0 4px 10px rgba(226,83,61,0.35);
+    0 4px 10px rgba(124,98,169,0.28);
   transition: transform var(--duration-fast) var(--ease-standard), filter var(--transition-base);
 }
 .shutter:hover .shutter__core { filter: brightness(1.05); }

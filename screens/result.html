@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Snap Korean · 내 표현</title>
+  <title>LifeVocab · 결과</title>
   <link rel="stylesheet" href="../assets/components.css" />
   <style> html,body{height:100%} body{display:flex} .screen{flex:1} </style>
 </head>
@@ -18,7 +18,7 @@
 
     <div class="appbar">
       <button class="icon-btn" aria-label="뒤로"><i data-lucide="arrow-left"></i></button>
-      <span class="appbar__step">3단계 · 내 표현</span>
+      <span class="appbar__step">3단계 · 인식 결과</span>
     </div>
     <div class="steps" style="padding:0 var(--space-lg) var(--space-md)">
       <span class="steps__dot is-done"></span>
@@ -28,31 +28,36 @@
     </div>
 
     <div class="screen__body stack-md">
-      <div class="photo" style="height:172px;font-size:80px">
-        🐶
-        <span class="photo__tag"><i data-lucide="check"></i> 방금 찍은 사진</span>
+      <div class="photo" style="height:172px;font-size:72px">
+        💡
+        <span class="photo__tag"><i data-lucide="sparkles"></i> 방금 인식됨</span>
       </div>
 
       <div class="row">
-        <span class="chip chip--noun">강아지</span>
-        <span class="chip chip--conj">~어 보여요</span>
+        <span class="chip chip--noun">ceiling light</span>
+        <span class="chip chip--conj">천장 조명</span>
       </div>
 
-      <p class="expression">강아지가<br />귀여워 보여요</p>
+      <p class="expression">ceiling light</p>
 
       <div class="card card--hint">
         <p class="body" style="font-size:var(--text-label);color:var(--color-primary-dark)">
-          <i data-lucide="lightbulb"></i> 오늘 배운 활용형 <b>‘~어 보여요’</b>로 만든 <b>내 문장</b>이에요.
-          명사만 외우는 게 아니라, 바로 말이 됩니다.
+          <i data-lucide="volume-2"></i> 발음: <b>/ˈsiːlɪŋ laɪt/</b><br />
+          예문: <b>The ceiling light is very bright.</b>
         </p>
+      </div>
+
+      <div class="row">
+        <span class="badge badge--success">정확도 92%</span>
+        <span class="badge">실내 사물</span>
       </div>
 
       <div class="spacer"></div>
     </div>
 
     <div class="screen__bottom">
-      <button class="btn"><i data-lucide="volume-2"></i> 발음 연습하기</button>
-      <button class="btn btn--ghost"><i data-lucide="bookmark"></i> 이 표현 저장</button>
+      <button class="btn"><i data-lucide="bookmark"></i> 저장하고 학습</button>
+      <button class="btn btn--ghost"><i data-lucide="rotate-ccw"></i> 다시 찍기</button>
     </div>
   </div>
 

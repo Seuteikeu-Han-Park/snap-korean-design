@@ -1,6 +1,6 @@
 /* ============================================================
- * Snap Korean — GLYPHS
- * UI 아이콘은 Lucide(<i data-lucide="...">), 표현용 이모지는 Twemoji(트위터 이모지).
+ * LifeVocab — GLYPHS
+ * UI 아이콘은 Lucide(<i data-lucide="...">), 보조 이모지는 Twemoji(트위터 이모지).
  * CDN에서 로드 후 렌더. 동적으로 추가된 콘텐츠는 window.renderGlyphs() 호출.
  * ============================================================ */
 (function () {

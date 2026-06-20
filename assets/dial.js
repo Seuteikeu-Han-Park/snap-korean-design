@@ -1,5 +1,5 @@
 /* ============================================================
- * Snap Korean — CAMERA DIAL
+ * LifeVocab — CAMERA DIAL
  * 회전식 촬영 모드 다이얼. 가운데 셔터, 림(rim)을 드래그하거나
  * 모드를 탭하면 선택 모드가 상단 포인터로 스냅된다. (촬영 화면 전용)
  * 마크업: [data-camera] > [data-mode-label] + .dial[data-dial] > .dial__opt + .shutter
